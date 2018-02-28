@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <button id='getResult'>Click</button>
+  <div id='root'></div>
+  <script>
+
+  fetch('https://jsonplaceholder.typicode.com/posts/6');
+
+    const button = document.getElementById('getResult');
+    const content = document.getElementById('root');
+    button.addEventListener('click', () => {
+      console.log('click!!!')
+      fetch('https://jsonplaceholder.typicode.com/posts/6')
+      .then((data) => {
+        return data.json();
+      })
+      .then((post) => {
+        content.innerHTML = post.body;
+      })
+      .then(() => {
+        return fetch('https://jsonplaceholder.typicode.com/posts/1')
+      })
+      .then((data) => {
+        return data.json();
+      })
+      .then((post) => {
+        var h3 = document.createElement('h3');
+        h3.innerHTML = post.body;
+        content.appendChild(h3);
+
+      })
+    })
+  </script>
+</body>
+</html>
